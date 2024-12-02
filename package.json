@@ -1,0 +1,13 @@
+{
+  "engines": {
+    "node": "v22.5.1"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "ejs-mate": "^4.0.0",
+    "express": "^4.21.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.8.2",
+    "nodemon": "^3.1.7"
+  }
+}

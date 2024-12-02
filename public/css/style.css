@@ -1,0 +1,511 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #101010; 
+    color: black;
+    overflow: auto;
+    overflow-x: hidden;
+    
+}
+
+/* sidebar construction */
+.sidebar{
+  background-color: #101010; 
+  /* background-color: aqua; */
+    color: white;
+    width: 100px;
+    position: fixed;
+    z-index: 1;
+    height: 100vh;
+    margin-right: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+.sidebar div{
+  background-color:transparent;
+  color:white;
+}
+.logo{
+  height: 25%;
+  width: 20%;
+}
+.logo img{
+  height: 100px;
+  width: 100px;
+}
+.logo .btn{
+  font-size: 0.8rem;
+  width: 85px;
+  font-weight: 500;
+  padding: 2px 0;
+  border-radius: 15px;
+  color: yellow;
+  margin-top: -16px;
+  position: absolute;
+  left: 9px;
+}
+.icons{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.icons i{
+  margin-bottom: 3rem;
+  font-size: 1.2rem;
+  opacity: 0.3;
+}
+.icons i:hover{
+  font-size: 1.4rem;
+  opacity: 1;
+}
+
+/* Slider */
+.slider {
+    /* position: relative; */
+    position: fixed;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+  }
+  .card {
+    width: 100%;
+    height: 78%;
+    position: relative;
+    border:none;
+  }
+  .card-video {
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+  }
+  .card-video-overlay {
+    position: absolute;
+    top: 0%;
+    left: 10%;
+    color: white;
+    text-align: center;
+    text-align: start;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1rem;
+    z-index: 1;
+  }
+  .btn {
+    display: inline;
+    padding: 0.7rem 5rem;
+    margin: 10px;
+    margin-left: -0.2rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .buttons {
+    display: flex;
+  }
+
+  .plus_btn {
+    padding: 0.2rem 1.2rem;
+    margin-left: -5px;
+    text-shadow: 15px black;
+  }
+  .btn-light {
+    background-color: rgba(255, 255, 255, 0.231);
+    box-shadow: 5px 5px 20px rgb(45, 43, 43);
+    color: white;
+  }
+
+/* Footer Part styling */
+  .footer{
+    height: 120%;
+    width: 100%;
+    background-color: transparent; 
+    position: absolute;
+    top: 37%;
+    transition: top 0.5s ease;
+    color: white;
+  }
+  .innerFooter{
+    height: 125%;
+    width: 100%;
+    background-color:  rgba(16, 16, 16,0.05);
+  
+  }
+
+/*footer cards */
+.container {
+  background-color: #101010;
+  max-width: 93.5%;
+  overflow: hidden;
+  position: relative;
+  top: 25%;
+  padding: 35px 15px;
+  margin-left: 100px;
+}
+ h4{
+  font-size: 1.2rem;
+  text-align: start;
+  font-weight: 600;
+   margin-top: -1.5rem;
+   margin-bottom: 50px;
+}
+.cards-container {
+  display: flex;
+  height: 50%;
+  gap: 20px;
+  transition: transform 0.5s ease;
+  width: 110%;
+  z-index: 1;
+  margin-top: -1rem;
+}
+.smallcard {
+  position: relative;
+  background-color:transparent;
+  max-width: 12rem;
+  height: 16rem;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: 0px 10px 50px rgba(0, 0, 0, 1);
+  cursor: pointer;
+  transition: transform 0.3s ease 0.5s, box-shadow 0.3s ease;
+}
+.smallcard:hover {
+  margin-left: 40px;
+  transform: scale(1.5);
+  z-index: 1;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 1);
+}
+.card-img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease 0.5s;
+}
+.card:hover .card-img {
+  transform: scale(1.1);
+}
+.card:hover .card{
+  transform: scale(2.1);
+}
+
+.card-info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  color: white;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover .card-info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-info h3 {
+  font-size: 18px;
+}
+
+.card-info p {
+  font-size: 12px;
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  font-size: 3rem;
+}
+.nav-button:hover {
+  font-size: 5rem;
+}
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+a{
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 550;
+  position: absolute;
+  right: 14px;
+  top:30px;
+  opacity: 0.5;
+  display: none;
+}
+a:hover{
+  opacity: 1;
+}
+.container:hover a{
+  display: block;
+}
+a i{
+  margin-left: 5px;
+}
+
+/*sportcard*/
+.sportcard{
+  position: relative;
+  background-color:transparent;
+  max-width: 15rem;
+  height: 10rem;
+  overflow: hidden;
+  /* border-radius: 2px; */
+  /* box-shadow: 0px 10px 50px rgba(0, 0, 0, 1); */
+  /* cursor: pointer; */
+  /* transition: transform 0.3s ease 0.5s, box-shadow 0.3s ease; */
+}
+.sportcard:hover{
+  margin-left: 50px;
+}
+  
+@media(max-width:830px){
+  /* .outerContain{
+    height: 100vh;
+    display: flex;
+    overflow: auto;
+}
+.mainContent{
+    height: 100vh;
+    background-color: transparent;
+    overflow:auto !important;
+} */
+
+/* sidebar construction */
+.sidebar{
+  background-color:#101010; 
+    color: white;
+    width: 100%;
+    position: fixed;
+    z-index: 2;
+    height: 8vh;
+    bottom: 0;
+    margin-right: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+.sidebar div{
+  background-color:transparent;
+  color:white;
+}
+.logo{
+  display: none;
+}
+.logo img{
+  display: none;
+}
+.icons{
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-evenly; 
+  margin-top: 1.2rem;
+}
+.icons i{
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  opacity: 0.3;
+}
+.icons i:hover{
+  font-size: 1.4rem;
+  opacity: 1;
+}
+
+/* Slider */
+.slider {
+  width: 100%;
+  height: 30vh;
+  overflow: hidden;
+  margin-left: 0px;
+  margin-top: 30px;
+}
+.slides {
+  transition: transform 0.5s ease-in-out;
+  height: 100%;
+}
+.card { 
+  height: 100%;
+  position: relative;
+  border:none;
+  border-radius: 10px;
+}
+.card-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: none;
+  z-index: 1;
+}
+.card-video-overlay {
+  position: absolute;
+  left: 50%;
+  color: white;
+  text-align: center;
+  margin-top: -1rem;
+  margin-left: -8rem;
+  text-align: start;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 1rem;
+  z-index: 1;
+}
+.smallScreen{
+  display: none;
+}
+.btn {
+  display: inline;
+  padding: 0.7rem 1rem;
+  margin: 10px;
+  margin-left: 0;
+  font-size: 0.8rem;
+  font-weight: 550;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+.buttons {
+  display: flex;
+}
+.plus_btn {
+  padding: 0.2rem 1.2rem;
+  margin-left: 0;
+  text-shadow: 15px black;
+}
+.btn-light {
+  background-color: rgba(255, 255, 255, 0.231);
+  box-shadow: 5px 5px 20px rgb(45, 43, 43);
+  color: white;
+}
+
+.nav-button:hover {
+  font-size: 50px;
+}
+.footer{
+  height: 150%;
+  width: 100%;
+  background-color: transparent;
+  position: absolute;
+  top: 20%;
+  transition: top 0.5s ease;
+  color: white;
+}
+/* overlay footer */
+.innerFooter{
+  height: 42%;
+  width: 100%;
+  background-color:  rgba(16, 16, 16,0.05);
+}
+/* cards */
+.container {
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 35px 15px;
+  margin-left: 0px;
+  margin-top:0px;
+}
+.cards-container {
+  gap: 10px;
+}
+.smallcard {
+  max-width: 9rem;
+  height: 12rem;
+}
+.smallcard:hover {
+  margin-left: 30px;
+  transform: scale(1.2);
+  z-index: 1;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 1);
+}
+
+.card-img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease 0.5s;
+  
+}
+.card:hover .card-img {
+  transform: scale(1);
+}
+.card:hover .card{
+  transform: scale(1);
+}
+
+.card-info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  color: white;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.card-info h3 {
+  /* margin: 0; */
+  font-size: 18px;
+}
+
+.card-info p {
+  font-size: 10px;
+}
+
+.nav-button {
+  font-size: 3rem; 
+}
+.nav-button:hover {
+  font-size: 5rem;
+}
+
+/* view all button */
+a{
+  font-size: 1rem;
+  right: 10px;
+}
+.container:hover a{
+  display: block;
+}
+
+/*sportcard*/
+.sportcard{
+  max-width: 16rem;
+  height: 10rem;
+}
+.lastdiv{
+  height: 70%;
+}
+}
+@media (orientation: landscape) {
+  
+}
