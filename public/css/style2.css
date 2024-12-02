@@ -24,6 +24,7 @@ body {
   width: 90%;
   justify-self: end;
   margin-top: 5%;
+  margin-bottom:10%;
 }
 .smallcard:hover {
   margin-left: 10px;
