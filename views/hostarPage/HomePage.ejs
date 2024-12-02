@@ -59,7 +59,7 @@
                 <a href="/hostar/home/allListings">View all<i class="fa-solid fa-angle-right"></i></a>
                 <div class="cards-container cardsContainer" id="cardsContainer">
                       <%for(let d of data){%>
-                        <%if(d.type=="movie"){%>
+                        <%if(d.type=="Movie"){%>
                         <div class="card smallcard" onclick="submitCardData('<%= d._id %>')">
                           <img src="<%=d.poster.url%>" alt="Card Image" class="card-img">
                           <div class="card-info">
@@ -81,7 +81,7 @@
                 <div class="cards-container cardsContainer" id="cardsContainer">
                   <!-- Cards -->
                         <%for(let d of data){%>
-                          <%if(d.type=="sport"){%>
+                          <%if(d.type=="Sport"){%>
                           <div class="card smallcard sportcard" onclick="submitCardData('<%= d._id %>')">
                             <img src="<%=d.poster.url%>" alt="Card Image" class="card-img">
                             <div class="card-info">
@@ -103,7 +103,7 @@
                 <div class="cards-container cardsContainer" id="cardsContainer">
                   <!-- Cards -->
                         <%for(let d of data){%>
-                          <%if(d.type=="comedy movie"){%>
+                          <%if(d.type=="Comedy Movie"){%>
                           <div class="card smallcard" onclick="submitCardData('<%= d._id %>')">
                             <img src="<%=d.poster.url%>" alt="Card Image" class="card-img">
                             <div class="card-info">
@@ -125,7 +125,7 @@
                 <div class="cards-container cardsContainer" id="cardsContainer">
                   <!-- Cards -->
                         <%for(let d of data){%>
-                          <%if(d.type=="south movie"){%>
+                          <%if(d.type=="South Movie"){%>
                           <div class="card smallcard" onclick="submitCardData('<%= d._id %>')">
                             <img src="<%=d.poster.url%>" alt="Card Image" class="card-img">
                             <div class="card-info">
