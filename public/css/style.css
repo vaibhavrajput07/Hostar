@@ -75,8 +75,7 @@ body{
     height: 100%;
   }
   .card {
-    width: 100%;
-    height: 78%;
+    flex: 0 0 100%;
     position: relative;
     border:none;
   }
