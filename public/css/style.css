@@ -160,7 +160,7 @@ body{
 }
 .cards-container {
   display: flex;
-  height: 50%;
+  height: 60%;
   gap: 20px;
   transition: transform 0.5s ease;
   width: 110%;
