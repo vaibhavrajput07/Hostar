@@ -33,7 +33,7 @@ app.get("/",(req,res)=>{
 app.get("/hostar/:id",async(req,res)=>{
 
     let data=await Listing.find({});
-    let idData=await Listing.findOne({type:"sport"});  //default video play on screen
+    let idData=await Listing.findOne({type:"Sport"});  //default video play on screen
     let {id}=req.params;
     if(id.length!=24){
        id=idData._id.toString();
