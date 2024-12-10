@@ -81,7 +81,7 @@ app.post("/hostar/listing/add",upload.single('poster'),async(req,res)=>{
     const { body: data } = req;
     const { path: url, filename } = req.file;
 
-    console.log(url, "...", filename);
+    // console.log(url, "...", filename);
 
     // Create a new listing and save to the database
     const newListing = new Listing(data);
@@ -91,7 +91,7 @@ app.post("/hostar/listing/add",upload.single('poster'),async(req,res)=>{
     
 } catch (err) {
     // Handle errors gracefully
-    console.error("Error occurred:", err);
+    // console.error("Error occurred:", err);
     return res.status(500).send({ error: 'Error occurred while saving the listing.' });
 }
 });
@@ -108,7 +108,7 @@ app.get("/hostar/listing/:id/update",async(req,res)=>{
 app.put("/hostar/listing/:id/update",upload.single('poster'),async(req,res)=>{
     let{id}=req.params;
     let listing=await Listing.findByIdAndUpdate(id,{...req.body});
-    console.log(req.file);
+    // console.log(req.file);
 
     if(typeof req.file!== "undefined"){
     let url=req.file.path;
