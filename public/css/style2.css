@@ -23,11 +23,12 @@ body {
   justify-content: start;
   width: 90%;
   justify-self: end;
+  height: auto;
   margin-top: 5%;
   margin-bottom:10%;
 }
 .smallcard:hover {
-  margin-left: 10px;
+  /* margin-left: 10px; */
   transform: scale(1.5);
 }
 /* navbar */
@@ -41,8 +42,8 @@ body {
   margin-top: 50px;
 }
 
-/* Search Btn */
-.search-btn {
+/* Search Inp */
+/* .search-btn {
    font-weight: 300;
    font-size: 1.2rem;
    border: 0.1px solid rgba(255, 255, 255,0.3);
@@ -58,11 +59,12 @@ body {
   margin-right: 0.5rem;
   font-size: 1rem;
   opacity: 0.5;
-}
+} */
 .search-inp {
   border-radius: 5px;
   width: 85vw;
   padding: 0.5rem 3rem 0.5rem 3rem;
+  margin-left: 4rem;
 }
 
 /* Style for the search input field */
@@ -93,7 +95,7 @@ input[type="search"]::placeholder{
   .navbar{
     background-color:#101010 !important;
   }
-  .search-btn {
+  /* .search-btn {
     background-color: #1f1e1e;
     color: #fff;
     border: 1px solid white;
@@ -103,14 +105,16 @@ input[type="search"]::placeholder{
   .search-btn:hover {
     background-color: #fe424d;
     color: #fff;
-  }
+  } */
   .search-inp {
     border-radius: 5px;
-    width: 250px;
-    margin-left: -2rem;
+    width: 270px;
+    margin-left: -0.5rem;
     padding: 0.5rem 2rem 0.5rem 2rem;
   }
-
+  .search-inp::placeholder{
+    font-size: 1rem;
+  }
   /* sidebar into footer */
   .icons{
     display: flex; 

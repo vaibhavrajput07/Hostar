@@ -6,7 +6,6 @@ body{
     color: black;
     overflow: auto;
     overflow-x: hidden;
-    
 }
 
 /* sidebar construction */
@@ -166,6 +165,7 @@ body{
   width: 110%;
   z-index: 1;
   margin-top: -1rem;
+  margin-left: 1rem;
 }
 .smallcard {
   position: relative;
@@ -179,7 +179,7 @@ body{
   transition: transform 0.3s ease 0.5s, box-shadow 0.3s ease;
 }
 .smallcard:hover {
-  margin-left: 30px;
+  /* margin-left: 30px; */
   transform: scale(1.25);
   z-index: 1;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 1);
@@ -277,26 +277,24 @@ a i{
   max-width: 15rem;
   height: 10rem;
   overflow: hidden;
-  /* border-radius: 2px; */
-  /* box-shadow: 0px 10px 50px rgba(0, 0, 0, 1); */
-  /* cursor: pointer; */
-  /* transition: transform 0.3s ease 0.5s, box-shadow 0.3s ease; */
 }
-.sportcard:hover{
+/* .sportcard:hover{
   margin-left: 50px;
+} */
+.lastdiv{
+  height: 35%;
+}
+/* update button */
+.update{
+  font-size: 0.5rem;
+  padding: 5px 10px;
+  margin-top: 200px;
+}
+.sportcard .update{
+  margin-top: 100px;
 }
   
 @media(max-width:830px){
-  /* .outerContain{
-    height: 100vh;
-    display: flex;
-    overflow: auto;
-}
-.mainContent{
-    height: 100vh;
-    background-color: transparent;
-    overflow:auto !important;
-} */
 
 /* sidebar construction */
 .sidebar{
@@ -504,7 +502,26 @@ a{
 .lastdiv{
   height: 70%;
 }
+/* update button */
+.update{
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  margin-top: 130px;
+}
+.sportcard .update{
+  margin-top: 90px;
 }
 @media (orientation: landscape) {
-  
+  .slider{
+    height: 100vh;
+    margin-top: 0;
+  }
+  .sidebar{
+    display: none;
+  }
+  .footer{
+    display: none;
+  }
 }
+}
+

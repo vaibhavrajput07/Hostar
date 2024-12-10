@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV!="production"){
+  require('dotenv').config();
+}
+
 const express=require("express");
 const app=express();
 const ejsMate=require("ejs-mate");
@@ -5,6 +9,9 @@ const mongoose=require("mongoose");
 const path=require("path");
 const methodOverride=require("method-override");
 const Listing = require("./model/hostarSchema");
+const multer  = require('multer')
+const {storage}=require("./cloudConfig.js");
+const upload = multer({ storage });
 
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
@@ -63,46 +70,53 @@ app.get("/hostar/listing/add",(req,res)=>{
 });
 
 //route for add
-app.post("/hostar/listing/add",async(req,res)=>{
-  let data=req.body;
-  try{
-    let newListing=new Listing(data);
+app.post("/hostar/listing/add",upload.single('poster'),async(req,res)=>{
+  try {
+    // Ensure a file was uploaded
+    if (!req.file) {
+        return res.status(400).send({ error: 'No file uploaded!' });
+    }
+
+    // Destructure the necessary data
+    const { body: data } = req;
+    const { path: url, filename } = req.file;
+
+    console.log(url, "...", filename);
+
+    // Create a new listing and save to the database
+    const newListing = new Listing(data);
+    newListing.poster = { url, filename };
     await newListing.save();
-    res.send("Listing Created");
-  }
-  catch(err){
-      console.log("Error occured");
-      console.log(err);
-      res.statusCode(500).send("Error in listing");
-  }
+    res.redirect("/hostar/home");
+    
+} catch (err) {
+    // Handle errors gracefully
+    console.error("Error occurred:", err);
+    return res.status(500).send({ error: 'Error occurred while saving the listing.' });
+}
 });
 
 //route for update
-app.get("/hostar/listing/update",(req,res)=>{
-  res.render("form/updatedata.ejs");
+app.get("/hostar/listing/:id/update",async(req,res)=>{
+  let {id}=req.params;
+  let data=await Listing.findById(id);
+  let OriginalImageUrl=data.poster.url;
+  OriginalImageUrl=OriginalImageUrl.replace("/upload","/upload/h_300,w_250");
+  res.render("form/updatedata.ejs",{data,id,OriginalImageUrl});
 });
 
-app.put("/hostar/listing/update",async(req,res)=>{
+app.put("/hostar/listing/:id/update",upload.single('poster'),async(req,res)=>{
+    let{id}=req.params;
+    let listing=await Listing.findByIdAndUpdate(id,{...req.body});
+    console.log(req.file);
 
-  let data=req.body;
-  let updatedData = { ...data };
-  let condition=data.condition.toString();
-
-  try{
-    const result= await Listing.updateOne({title:condition},{ $set: updatedData });
-    if (result.modifiedCount > 0) {
-      res.send("Listing successfully updated");
-    } else if (result.matchedCount > 0) {
-      res.send("Listing found, but no changes were made");
-    } else {
-      res.send("No matching listing found");
+    if(typeof req.file!== "undefined"){
+    let url=req.file.path;
+    let filename=req.file.filename;
+    listing.poster={url,filename};
+    await listing.save();
     }
-  }
-  catch(err){
-      console.log("Error occured");
-      console.log(err);
-      res.status(500).send("Error updating the listing");
-  }
+    res.redirect("/hostar/home");
 });
 
 app.listen("8080",()=>{

@@ -1,13 +1,11 @@
 
-
-
 // Video play after setTimeOut
 
 setTimeout(() => {
   const video = document.getElementById('myVideo');
-  video.setAttribute('autoplay', 'true'); // Add autoplay attribute dynamically
+  video.setAttribute('autoplay', 'true'); 
   video.play(); // Ensure the video starts playing 
-}, 6000); // 5 seconds delay
+}, 6000); 
 
 
 //submit data
@@ -15,18 +13,17 @@ setTimeout(() => {
 function submitCardData(cardId) {
   // URL to send the data to
   const url = `/hostar/${cardId}`;
-  // Option 1: Redirect to the server-side URL
+  //Redirect to the server-side URL
   window.location.href = url;
 }
 
-// small cards slider
+// Small cards slider (single card movement)
 const cardsContainer = document.querySelectorAll('.cardsContainer');
 const prevbtn = document.querySelectorAll('.prev');
 const nextbtn = document.querySelectorAll('.next');
 
-const cardWidth = 160; // Card width + gap
-const visibleCards = Math.floor(window.innerWidth / cardWidth);
-
+const cardWidth = 250 // Card width in rem converted to pixels
+ 
 // Loop through each pair of next and prev buttons
 for (let i = 0; i < nextbtn.length; i++) {
   const next = nextbtn[i]; // Get the current "next" button
@@ -38,19 +35,21 @@ for (let i = 0; i < nextbtn.length; i++) {
   next.addEventListener('click', () => {
     const maxScroll = cardCon.scrollWidth - cardCon.clientWidth;
 
-    // Increase scrollAmount by visibleCards and update transform
-    scrollAmount = Math.min(scrollAmount + cardWidth * visibleCards, maxScroll);
+    // Increase scrollAmount by a single card width and update transform
+    scrollAmount = Math.min(scrollAmount + cardWidth, maxScroll);
     cardCon.style.transform = `translateX(-${scrollAmount}px)`;
-    cardCon.style.transition = 'transform 0.5s ease-in-out'; // Smooth transition
+    cardCon.style.transition = 'transform 0.9s ease-in-out'; // Smooth transition
   });
 
   prev.addEventListener('click', () => {
-    // Decrease scrollAmount and update transform
-    scrollAmount = Math.max(scrollAmount - cardWidth * visibleCards, 0);
+    // Decrease scrollAmount by a single card width and update transform
+    scrollAmount = Math.max(scrollAmount - cardWidth, 0);
     cardCon.style.transform = `translateX(-${scrollAmount}px)`;
-    cardCon.style.transition = 'transform 0.5s ease-in-out'; // Smooth transition
+    cardCon.style.transition = 'transform 0.9s ease-in-out'; // Smooth transition
   });
 }
+
+
 
 
 // form validation
