@@ -13,8 +13,8 @@
      <div class="col-8 offset-2">
         <a href='https://hostar.onrender.com/hostar/home'><i class="fa-solid fa-arrow-left"></i></a>
         <br><br>
-        <h3>Create a new listing</h3>
-      <form method="post" action="/hostar/listing/update?_method=put" id="dataForm" novalidate class="needs-validation" enctype="multipart/form-data">
+        <h3>Update the listing</h3>
+      <form method="post" action="/hostar/listing/<%=data.id%>/update?_method=put" id="dataForm" novalidate class="needs-validation" enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label" for="type">Category</label>
             <select name="type" id="type" class="form-select">
