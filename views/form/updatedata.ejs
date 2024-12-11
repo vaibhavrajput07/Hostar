@@ -27,13 +27,13 @@
         </div>
         <div class="mb-3">
             <label class="form-label" for="title">Title</label>
-            <input type="text" name="title" placeholder="add catchy title" class="form-control" value="<%=data.title%>" required>
+            <input type="text" name="title" placeholder="add catchy title" class="form-control" value="<%=data.title%>">
             <div class="invalid-feedback">Please enter valid title</div>
         </div>
                 
         <div class="mb-3">
             <label class="form-label" for="description">Description</label>
-            <textarea type="text" name="description" class="form-control" required><%=data.description%></textarea>
+            <textarea type="text" name="description" class="form-control"><%=data.description%></textarea>
             <div class="invalid-feedback">Please enter short description</div>
         </div>
         <div class="mb-3">
@@ -47,7 +47,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label" for="video">Upload Video URL</label>
-            <input type="url" name="video.url" class="form-control" value="<%=data.video.url%>" required>
+            <input type="url" name="video.url" class="form-control" value="<%=data.video.url%>">
             <div class="invalid-feedback">Please enter Video URL</div>
         </div>
         <button class="btn btn-dark add-btn mt-3">Add</button>
