@@ -79,8 +79,9 @@ body{
     border:none;
   }
   .card-video {
-    width: 100%;
-    height: 100%;
+    align-self: flex-end;
+    width: 94%;
+    height: 90%;
     object-fit:cover;
   }
   .card-video-overlay {
@@ -294,7 +295,7 @@ a i{
   margin-top: 100px;
 }
   
-@media(max-width:900px){
+@media(max-width:750px){
 
 /* sidebar construction */
 .sidebar{

@@ -69,32 +69,52 @@ app.get("/hostar/listing/add",(req,res)=>{
   res.render("form/inserdata.ejs");
 });
 
-//route for add
-app.post("/hostar/listing/add",upload.single('poster'),async(req,res)=>{
+app.post("/hostar/listing/add",upload.fields([{ name: 'poster' }, { name: 'video' }]),async(req,res)=>{
   try {
-    // Ensure a file was uploaded
-    if (!req.file) {
-        return res.status(400).send({ error: 'No file uploaded!' });
+    // Ensure files are uploaded
+    if (!req.files || (!req.files['poster'] && !req.files['video'])) {
+        return res.status(400).send({ error: 'No poster or video uploaded!' });
     }
 
-    // Destructure the necessary data
+    // Destructure the data from the request
     const { body: data } = req;
-    const { path: url, filename } = req.file;
+    let poster = null;
+    let video = null;
 
-    // console.log(url, "...", filename);
+    // Handle poster file if uploaded
+    if (req.files['poster']) {
+      const { path: posterUrl, filename: posterFilename, mimetype } = req.files['poster'][0];
+      if (!mimetype.startsWith('image/')) {
+        return res.status(400).send({ error: 'Please Enter valid format of Image' });
+      }
+      poster = { url: posterUrl, filename: posterFilename };
+      
+    }
+
+    // Handle video file if uploaded
+    if (req.files['video']) {
+      const { path: videoUrl, filename: videoFilename, mimetype } = req.files['video'][0];
+      if (!mimetype.startsWith('video/')) {
+        return res.status(400).send({ error: 'Please Enter valid format of Video' });
+      }
+      video = { url: videoUrl, filename: videoFilename };
+    }
 
     // Create a new listing and save to the database
-    const newListing = new Listing(data);
-    newListing.poster = { url, filename };
+    const newListing = new Listing({
+      ...data,
+      poster,
+      video
+    });
+
     await newListing.save();
     res.redirect("/hostar/home");
     
-} catch (err) {
-    // Handle errors gracefully
-    // console.error("Error occurred:", err);
+  } catch (err) {
+    console.error("Error occurred:", err);
     return res.status(500).send({ error: 'Error occurred while saving the listing.' });
-}
-});
+  }
+})
 
 //route for update
 app.get("/hostar/listing/:id/update",async(req,res)=>{
@@ -105,18 +125,44 @@ app.get("/hostar/listing/:id/update",async(req,res)=>{
   res.render("form/updatedata.ejs",{data,id,OriginalImageUrl});
 });
 
-app.put("/hostar/listing/:id/update",upload.single('poster'),async(req,res)=>{
-    let{id}=req.params;
-    let listing=await Listing.findByIdAndUpdate(id,{...req.body});
-    // console.log(req.file);
+app.put("/hostar/listing/:id/update", upload.fields([{ name: 'poster' }, { name: 'video' }]), async (req, res) => {
+  try {
+    const { id } = req.params;
+    let listing = await Listing.findById(id);
 
-    if(typeof req.file!== "undefined"){
-    let url=req.file.path;
-    let filename=req.file.filename;
-    listing.poster={url,filename};
-    await listing.save();
+    if (!listing) {
+      return res.status(404).send({ error: 'Listing not found' });
     }
+
+    // Update basic listing data (text fields)
+    listing = Object.assign(listing, req.body);
+
+    // Handle poster file if uploaded
+    if (req.files && req.files['poster']) {
+      const { path: posterUrl, filename: posterFilename,mimetype } = req.files['poster'][0];
+      if (!mimetype.startsWith('image/')) {
+        return res.status(400).send({ error: 'Please Enter valid format of Image' });
+      }
+      listing.poster = { url: posterUrl, filename: posterFilename };
+    }
+
+    // Handle video file if uploaded
+    if (req.files && req.files['video']) {
+      const { path: videoUrl, filename: videoFilename,mimetype } = req.files['video'][0];
+      if (!mimetype.startsWith('video/')) {
+        return res.status(400).send({ error: 'Please Enter valid format of Video' });
+      }
+      listing.video = { url: videoUrl, filename: videoFilename };
+    }
+
+    // Save the updated listing to the database
+    await listing.save();
     res.redirect("/hostar/home");
+
+  } catch (err) {
+    console.error("Error occurred:", err);
+    return res.status(500).send({ error: 'Error occurred while updating the listing.' });
+  }
 });
 
 app.listen("8080",()=>{

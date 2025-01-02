@@ -1,3 +1,22 @@
+// form validation
+
+ // Wait for DOM content to load
+ document.addEventListener("DOMContentLoaded", function () {
+  // Get the form element
+  const form = document.getElementById("dataForm");
+
+  // Add a submit event listener
+  form.addEventListener("submit", function (event) {
+      // Check if the form is valid
+      if (!form.checkValidity()) {
+          event.preventDefault(); // Prevent submission
+          event.stopPropagation(); // Stop further event bubbling
+      }
+      // Add Bootstrap validation styles
+      form.classList.add("was-validated");
+  });
+});
+
 
 // Video play after setTimeOut
 
@@ -5,8 +24,21 @@ setTimeout(() => {
   const video = document.getElementById('myVideo');
   video.setAttribute('autoplay', 'true'); 
   video.play(); // Ensure the video starts playing 
-}, 6000); 
+}, 6000);
 
+const BigCards = document.querySelector(".BigCards");
+BigCards.addEventListener("click", () => {
+  const video = document.querySelector("#myVideo"); // Replace with the correct selector for your video element
+  if (video) {
+    if(video.muted==true){
+      video.muted = false; // Unmute the video
+    }
+    else{
+      video.muted = true; 
+    }
+    
+  }
+});
 
 //submit data
 
@@ -48,8 +80,6 @@ for (let i = 0; i < nextbtn.length; i++) {
     cardCon.style.transition = 'transform 0.9s ease-in-out'; // Smooth transition
   });
 }
-
-
 
 
 // form validation

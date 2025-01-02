@@ -21,9 +21,9 @@
             <div class="slider">
                 <%for(let d of data){%>
                   <% if(id==d._id) {%>
-                  <div class="card BigCards" onclick="submitCardData('<%= d._id %>')">
+                  <div class="card BigCards">
                       <video class="card-video" id="myVideo" muted loop poster="<%= d.poster.url%>">
-                        <source src="<%=d.video.url%>" type="video/mp4">
+                        <source id="video" src="<%=d.video.url%>" type="video/mp4">
                       </video>
                       <div id="videoOverlay" class="video-overlay"></div>
                   </div>
